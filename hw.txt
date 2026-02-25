@@ -1,5 +1,0 @@
-PIPE:-
-readstream
-writestream
-
-26-205 14
