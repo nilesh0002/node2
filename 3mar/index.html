@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home — Lumière</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1410;
+      --cream: #f7f2eb;
+      --warm: #c8a97e;
+      --rust: #b85c38;
+      --muted: #8a7d70;
+      --light: #ede8e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(247,242,235,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,126,0.25);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 6rem;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--rust);
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--rust); }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8; color: var(--muted);
+      max-width: 38ch; margin-bottom: 3rem;
+    }
+    .btn-row { display: flex; gap: 1rem; }
+    .btn {
+      display: inline-block; padding: 0.85rem 2.2rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--rust); color: var(--cream);
+      border: 1.5px solid var(--rust);
+    }
+    .btn-primary:hover { background: var(--ink); border-color: var(--ink); }
+    .btn-outline {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+    .hero-visual {
+      position: relative; overflow: hidden;
+      background: var(--light);
+      animation: fadeIn 1.2s ease both 0.3s;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #e8ddd0 0%, #c8b89a 40%, #b89070 100%);
+    }
+    .hero-visual-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-circle {
+      width: 340px; height: 340px; border-radius: 50%;
+      background: rgba(247,242,235,0.2);
+      border: 1px solid rgba(247,242,235,0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-circle-inner {
+      width: 240px; height: 240px; border-radius: 50%;
+      background: rgba(247,242,235,0.15);
+      border: 1px solid rgba(247,242,235,0.5);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300; color: rgba(247,242,235,0.9);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-tag {
+      position: absolute;
+      background: var(--cream); padding: 1rem 1.5rem;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      border-left: 2px solid var(--rust); color: var(--ink);
+    }
+    .tag-1 { top: 20%; left: 8%; animation: float 6s ease-in-out infinite; }
+    .tag-2 { bottom: 22%; right: 8%; animation: float 6s ease-in-out infinite 2s; }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      overflow: hidden; border-top: 1px solid rgba(200,169,126,0.3);
+      border-bottom: 1px solid rgba(200,169,126,0.3);
+      padding: 1.2rem 0; background: var(--light);
+    }
+    .marquee-track {
+      display: flex; gap: 4rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic; color: var(--muted);
+      letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .marquee-dot { color: var(--rust); margin-right: 4rem; }
+
+    /* ─── FEATURES ─── */
+    .features {
+      padding: 8rem 6rem;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 4rem;
+    }
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 300; color: var(--light);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .feature h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 400; margin-bottom: 0.75rem;
+    }
+    .feature p { font-size: 0.9rem; line-height: 1.8; color: var(--muted); }
+    .feature-line {
+      width: 32px; height: 2px; background: var(--rust);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2.5rem 6rem;
+      border-top: 1px solid rgba(200,169,126,0.3);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { height: 50vh; }
+      .hero-text { padding: 3rem 2rem; }
+      .features { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/home" class="logo">Lumière</a>
+    <ul class="nav-links">
+      <li><a href="/home" class="active">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Welcome to our world</p>
+      <h1>Where <em>craft</em> meets intention</h1>
+      <p class="hero-sub">We believe great work is born from patience, curiosity, and an unrelenting pursuit of the extraordinary. Every detail matters.</p>
+      <div class="btn-row">
+        <a href="/about" class="btn btn-primary">Our Story</a>
+        <a href="/contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <div class="hero-circle">
+          <div class="hero-circle-inner">L</div>
+        </div>
+      </div>
+      <div class="floating-tag tag-1">Est. 2024</div>
+      <div class="floating-tag tag-2">Crafted with care</div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Design</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Craft</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Intention</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Vision</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Precision</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Beauty</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Design</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Craft</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Intention</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Vision</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Precision</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Beauty</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature">
+      <div class="feature-num">01</div>
+      <div class="feature-line"></div>
+      <h3>Thoughtful Design</h3>
+      <p>Every element is placed with purpose. We strip away the unnecessary to reveal what truly matters.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">02</div>
+      <div class="feature-line"></div>
+      <h3>Timeless Craft</h3>
+      <p>Trends fade, but quality endures. We build things meant to last well beyond a single season.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">03</div>
+      <div class="feature-line"></div>
+      <h3>Deep Intention</h3>
+      <p>We ask why before we ask how. Understanding the purpose behind every decision guides our work.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 Lumière. All rights reserved.</p>
+    <p>/home · <a href="/about" style="color:var(--rust);text-decoration:none">/about</a> · <a href="/contact" style="color:var(--rust);text-decoration:none">/contact</a></p>
+  </footer>
+
+</body>
+</html>

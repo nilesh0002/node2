@@ -11,6 +11,8 @@ let _dirname=dirname(_file)
 
 let server=express();
 
+server.use(express.urlencoded({extended:false}))
+
 server.get('/',(req,res)=>{
     res.sendFile(path.join(_dirname,'./index.html'))
 })
@@ -20,8 +22,6 @@ server.get('/about',(req,res)=>{
 })
 server.get('/contact',(req,res)=>{
     res.sendFile(path.join(_dirname,'./contact.html'))
-    let newdata=req.query
-    console.log(newdata)
 
 })
 // server.get('/submit',(req,res)=>{
@@ -44,8 +44,8 @@ server.get('/contact',(req,res)=>{
 //     res.sendFile(path.join(_dirname,'contact.html'))
 //     })
 // })
-server.get('/submit',(req,res)=>{
-    let newdata=req.query
+server.post('/submit',(req,res)=>{
+    let newdata=req.body
     fs.readFile('user.txt','utf-8',(err,data)=>{
         if(err) console.log(err);
         let arr=data?JSON.parse(data):[]
@@ -55,7 +55,7 @@ server.get('/submit',(req,res)=>{
             console.log('data updated successfully')
         })
     })
-    fs.sendFile(path.join(_dirname,'contact.html'))
+    res.sendFile(path.join(_dirname,'/contact.html'))
 })        
 server.listen(3000,()=>{
     console.log('server is running at http://localhost:3000')

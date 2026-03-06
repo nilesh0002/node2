@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Lumière</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1410;
+      --cream: #f7f2eb;
+      --warm: #c8a97e;
+      --rust: #b85c38;
+      --muted: #8a7d70;
+      --light: #ede8e0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(247,242,235,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,126,0.25);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding: 12rem 6rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+      border-bottom: 1px solid rgba(200,169,126,0.3);
+      animation: fadeUp 0.8s ease both;
+    }
+    .page-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300; line-height: 1.1;
+    }
+    h1 em { font-style: italic; color: var(--rust); }
+    .header-right p {
+      font-size: 1rem; line-height: 1.9; color: var(--muted); max-width: 40ch;
+    }
+
+    /* ─── STORY ─── */
+    .story {
+      padding: 7rem 6rem;
+      display: grid; grid-template-columns: 240px 1fr; gap: 6rem;
+      animation: fadeUp 0.9s ease both 0.15s;
+    }
+    .story-sidebar h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400; color: var(--muted);
+      position: sticky; top: 120px;
+    }
+    .story-body p {
+      font-size: 1.05rem; line-height: 1.95; color: var(--ink);
+      margin-bottom: 2rem; max-width: 60ch;
+    }
+    .story-body p:first-child::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem; float: left; line-height: 0.8;
+      margin-right: 0.12em; margin-top: 0.15em;
+      color: var(--rust); font-weight: 300;
+    }
+    blockquote {
+      border-left: 2px solid var(--rust);
+      padding: 1rem 0 1rem 2rem; margin: 2.5rem 0;
+    }
+    blockquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem !important; font-style: italic;
+      color: var(--ink) !important; margin: 0 !important;
+    }
+
+    /* ─── VALUES ─── */
+    .values { background: var(--ink); padding: 7rem 6rem; }
+    .values-header {
+      display: flex; align-items: baseline; gap: 2rem; margin-bottom: 5rem;
+    }
+    .values-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300; color: var(--cream);
+    }
+    .values-header span {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--warm);
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    }
+    .value-item {
+      padding: 3rem; border: 1px solid rgba(200,169,126,0.15);
+      transition: background 0.3s;
+    }
+    .value-item:hover { background: rgba(200,169,126,0.06); }
+    .value-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; color: var(--rust); margin-bottom: 1rem;
+    }
+    .value-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .value-item p { font-size: 0.9rem; line-height: 1.8; color: rgba(237,232,224,0.55); }
+
+    /* ─── TEAM ─── */
+    .team { padding: 7rem 6rem; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 3rem;
+    }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .team-card { animation: fadeUp 0.7s ease both; }
+    .team-card:nth-child(2) { animation-delay: 0.1s; }
+    .team-card:nth-child(3) { animation-delay: 0.2s; }
+    .team-avatar {
+      width: 100%; aspect-ratio: 3/4; background: var(--light);
+      margin-bottom: 1.25rem; position: relative; overflow: hidden;
+    }
+    .avatar-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .avatar-initial {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300; color: var(--warm); opacity: 0.5;
+    }
+    .team-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; margin-bottom: 0.25rem;
+    }
+    .team-card .role {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2.5rem 6rem;
+      border-top: 1px solid rgba(200,169,126,0.3);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .page-header { grid-template-columns: 1fr; padding: 9rem 2rem 3rem; }
+      .story { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2rem; }
+      .story-sidebar h2 { position: static; }
+      .values { padding: 4rem 2rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .team { padding: 4rem 2rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/home" class="logo">Lumière</a>
+    <ul class="nav-links">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div>
+      <p class="page-eyebrow">Our Story</p>
+      <h1>Built on <em>belief</em></h1>
+    </div>
+    <div class="header-right">
+      <p>Lumière was founded on a simple conviction: that beautiful, purposeful work can change the way people experience the world around them.</p>
+    </div>
+  </header>
+
+  <section class="story">
+    <aside class="story-sidebar">
+      <h2>Our<br/>origins</h2>
+    </aside>
+    <div class="story-body">
+      <p>It began in a small studio with two people, a single lamp, and a stubborn refusal to settle. We didn't have much, but we had a point of view — and we believed that was enough to start something worth building.</p>
+      <blockquote>
+        <p>"The details are not the details. They make the design."<br/>— Charles Eames</p>
+      </blockquote>
+      <p>Over the years, we've grown — carefully, deliberately — bringing in people who share an obsession with getting things right. Not perfect for perfection's sake, but right in the way that matters: true to the work, honest to the audience, and built to endure.</p>
+      <p>Today, Lumière is a team of designers, thinkers, and makers. We work across disciplines, but we're united by a single standard: does this deserve to exist? If yes, we make it remarkable.</p>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="values-header">
+      <h2>What we stand for</h2>
+      <span>Core values</span>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">I</div>
+        <h3>Integrity</h3>
+        <p>We say what we mean and make what we say. Honesty isn't a policy — it's the only way we know how to work.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">C</div>
+        <h3>Curiosity</h3>
+        <p>Every answer sits behind a better question. We stay curious, challenge assumptions, and never stop learning.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">P</div>
+        <h3>Precision</h3>
+        <p>Excellence lives in the margins. We sweat the small stuff because the small stuff is what people remember.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">G</div>
+        <h3>Generosity</h3>
+        <p>Great work multiplies when shared. We give generously — our time, our thinking, our care.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <p class="section-label">The people</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">
+          <div class="avatar-inner"><span class="avatar-initial">A</span></div>
+        </div>
+        <h3>Aurore Vidal</h3>
+        <p class="role">Creative Director</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#e0d8ce">
+          <div class="avatar-inner"><span class="avatar-initial">M</span></div>
+        </div>
+        <h3>Marco Tessari</h3>
+        <p class="role">Head of Design</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#ddd5c8">
+          <div class="avatar-inner"><span class="avatar-initial">S</span></div>
+        </div>
+        <h3>Saoirse Brennan</h3>
+        <p class="role">Strategy Lead</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 Lumière. All rights reserved.</p>
+    <p><a href="home.html" style="color:var(--rust);text-decoration:none">home.html</a> · about.html · <a href="contact.html" style="color:var(--rust);text-decoration:none">contact.html</a></p>
+  </footer>
+
+</body>
+</html>

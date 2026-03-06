@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Lumière</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1410;
+      --cream: #f7f2eb;
+      --warm: #c8a97e;
+      --rust: #b85c38;
+      --muted: #8a7d70;
+      --light: #ede8e0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(247,242,235,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,126,0.25);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+
+    /* LAYOUT */
+    .contact-wrap {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    /* LEFT PANEL */
+    .contact-left {
+      background: var(--ink);
+      padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+      animation: fadeUp 0.8s ease both;
+    }
+    .contact-left::before {
+      content: 'L';
+      position: absolute; bottom: -2rem; right: -1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22rem; font-weight: 300; color: rgba(200,169,126,0.06);
+      line-height: 1; pointer-events: none;
+    }
+    .left-top { position: relative; z-index: 1; }
+    .page-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4vw, 4.5rem);
+      font-weight: 300; line-height: 1.15; color: var(--cream);
+    }
+    h1 em { font-style: italic; color: var(--warm); }
+    .left-sub {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(237,232,224,0.55);
+      margin-top: 1.5rem; max-width: 34ch;
+    }
+    .contact-info { position: relative; z-index: 1; margin-top: 4rem; }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(200,169,126,0.12);
+    }
+    .info-item:first-child { border-top: 1px solid rgba(200,169,126,0.12); }
+    .info-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(200,169,126,0.1); border: 1px solid rgba(200,169,126,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: var(--warm); flex-shrink: 0; margin-top: 2px;
+    }
+    .info-label {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 0.3rem;
+    }
+    .info-value { font-size: 0.95rem; color: var(--cream); line-height: 1.5; }
+    .social-row {
+      display: flex; gap: 1rem; margin-top: 3rem; position: relative; z-index: 1;
+    }
+    .social-btn {
+      width: 40px; height: 40px; border: 1px solid rgba(200,169,126,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(237,232,224,0.4); font-size: 0.75rem;
+      text-decoration: none; transition: all 0.2s; letter-spacing: 0.05em;
+    }
+    .social-btn:hover { border-color: var(--warm); color: var(--warm); background: rgba(200,169,126,0.06); }
+
+    /* RIGHT PANEL */
+    .contact-right {
+      padding: 6rem 5rem;
+      animation: fadeUp 0.9s ease both 0.15s;
+    }
+    .form-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; margin-bottom: 0.5rem;
+    }
+    .form-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 3rem; }
+
+    /* FORM */
+    .form-group { margin-bottom: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    label {
+      display: block;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; color: var(--ink);
+      background: transparent;
+      border: none; border-bottom: 1.5px solid rgba(138,125,112,0.35);
+      padding: 0.75rem 0; outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus { border-bottom-color: var(--rust); }
+    input::placeholder, textarea::placeholder { color: rgba(138,125,112,0.5); }
+    textarea { resize: none; height: 100px; }
+    select { cursor: pointer; }
+    select option { background: var(--cream); }
+
+    .radio-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .radio-label {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; color: var(--ink); cursor: pointer;
+      text-transform: none; letter-spacing: 0; font-weight: 400;
+    }
+    .radio-label input[type="radio"] {
+      width: 16px; height: 16px;
+      accent-color: var(--rust); cursor: pointer; flex-shrink: 0;
+    }
+
+    .submit-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid rgba(200,169,126,0.3);
+    }
+    .submit-note { font-size: 0.78rem; color: var(--muted); max-width: 28ch; }
+    .btn-submit {
+      background: var(--rust); color: var(--cream);
+      border: 1.5px solid var(--rust); padding: 0.95rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-submit:hover { background: var(--ink); border-color: var(--ink); }
+
+    /* SUCCESS */
+    .success-msg {
+      display: none;
+      text-align: center; padding: 4rem 2rem;
+      animation: pop 0.5s ease both;
+    }
+    .success-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; color: var(--rust); margin-bottom: 1rem;
+    }
+    .success-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; margin-bottom: 0.75rem;
+    }
+    .success-msg p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    .back-link {
+      display: inline-block; margin-top: 2rem;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--rust); text-decoration: none;
+      border-bottom: 1px solid var(--rust); padding-bottom: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 6rem;
+      border-top: 1px solid rgba(200,169,126,0.3);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pop {
+      0%   { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1);    opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .contact-left { padding: 6rem 2rem 3rem; }
+      .contact-right { padding: 3rem 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; gap: 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/home" class="logo">Lumière</a>
+    <ul class="nav-links">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="contact-wrap">
+
+    <!-- LEFT -->
+    <div class="contact-left">
+      <div class="left-top">
+        <p class="page-eyebrow">Get in touch</p>
+        <h1>Let's create<br/><em>something</em><br/>together</h1>
+        <p class="left-sub">Whether you have a project in mind, a question to ask, or simply want to say hello — we'd love to hear from you.</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon">@</div>
+          <div>
+            <p class="info-label">Email</p>
+            <p class="info-value">hello@lumiere.studio</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">↗</div>
+          <div>
+            <p class="info-label">Location</p>
+            <p class="info-value">Paris, France<br/>Open to remote collaboration</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">◷</div>
+          <div>
+            <p class="info-label">Response time</p>
+            <p class="info-value">Within 24–48 hours</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="social-btn">Tw</a>
+        <a href="#" class="social-btn">Li</a>
+        <a href="#" class="social-btn">Ig</a>
+        <a href="#" class="social-btn">Gh</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="contact-right">
+      <h2 class="form-heading">Send us a message</h2>
+      <p class="form-sub">Fill in the form and we'll be in touch soon.</p>
+
+      <!--
+        action="/send-message"  → hits your Express GET route
+        method="GET"            → fields become ?fname=...&email=...&message=...
+        onsubmit intercepts it  → uses fetch so the page doesn't reload
+      -->
+      <form id="contact-form" action="/send-message" method="GET" onsubmit="handleSubmit(event)">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" placeholder="Aurore" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" placeholder="Vidal" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="aurore@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="project">Project inquiry</option>
+            <option value="collaboration">Collaboration</option>
+            <option value="press">Press &amp; media</option>
+            <option value="general">General question</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Budget range</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="budget" value="under5k" /> Under €5k</label>
+            <label class="radio-label"><input type="radio" name="budget" value="5k-20k"  /> €5k – €20k</label>
+            <label class="radio-label"><input type="radio" name="budget" value="20k+"    /> €20k+</label>
+            <label class="radio-label"><input type="radio" name="budget" value="tbd"     /> TBD</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project or question…" required></textarea>
+        </div>
+
+        <div class="submit-row">
+          <p class="submit-note">We read every message personally and respond with care.</p>
+          <!-- type="submit" triggers the form's onsubmit handler -->
+          <button type="submit" class="btn-submit">Send Message</button>
+        </div>
+
+      </form>
+
+      <!-- Shown after server returns { ok: true } -->
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✦</div>
+        <h3>Message received</h3>
+        <p>Thank you for reaching out.<br/>We'll be in touch within 24–48 hours.</p>
+        <a href="/contact" class="back-link">Send another message</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 Lumière. All rights reserved.</p>
+    <p>
+      <a href="/home"    style="color:var(--rust);text-decoration:none">/home</a> ·
+      <a href="/about"   style="color:var(--rust);text-decoration:none">/about</a> ·
+      <a href="/contact" style="color:var(--rust);text-decoration:none">/contact</a>
+    </p>
+  </footer>
+
+  <script>
+    async function handleSubmit(e) {
+      e.preventDefault(); // prevent default full-page navigation
+
+      const form = document.getElementById('contact-form');
+
+      // Build query string from all named form fields automatically
+      const params = new URLSearchParams(new FormData(form)).toString();
+      // Result: ?fname=Aurore&lname=Vidal&email=...&subject=...&budget=...&message=...
+
+      try {
+        const res = await fetch('/send-message?' + params, { method: 'GET' });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('success-msg').style.display = 'block';
+        } else {
+          alert('Server error (' + res.status + '). Please try again.');
+        }
+      } catch (err) {
+        alert('Could not reach the server. Is it running?');
+      }
+    }
+  </script>
+
+</body>
+</html>

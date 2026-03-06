@@ -12,3 +12,11 @@
 npm =node package manager
 
 json file :-arrauy of objects
+
+__dirname:-current directory
+__filename:-current file name
+path.join(__dirname,'filename'):-join the current directory with the filename
+
+pakage.json::- npm init -y
+package-lock.json:- npm i express
+validation:- npm i express-validator
