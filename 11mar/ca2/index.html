@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Messaging</title>
+</head>
+<body>
+    <h2>Real-Time Messaging</h2>
+    <div id="messages"></div>
+    <form id="msg-form">
+        <input type="text" id="msg-input" placeholder="Type a message..." autocomplete="off">
+        <button type="submit">Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>    
+        const socket = io();
+        const messages = document.getElementById('messages');
+        const form = document.getElementById('msg-form');
+        const input = document.getElementById('msg-input');
+
+        // Listen for messages from server
+        socket.on('broadcast-message', (msg) => {
+            const p = document.createElement('p');
+            p.textContent = msg;
+            messages.appendChild(p);
+        });
+
+        // Send message on form submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (input.value.trim()) {
+                socket.emit('client-message', input.value.trim());
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

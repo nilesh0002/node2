@@ -13,6 +13,10 @@ npm =node package manager
 
 json file :-arrauy of objects
 
+expreess use for hanfle http request and response
+http.createserver(app):- app object is used to handle the request and response -- from http module
+const io:- new Server(server):- used to create a new server -- from socket.io
+
 __dirname:-current directory
 __filename:-current file name
 path.join(__dirname,'filename'):-join the current directory with the filename
