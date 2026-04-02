@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>About | Vertex Portal</title>
+	<style>
+		:root {
+			--bg: #f3f6fb;
+			--surface: #ffffff;
+			--text: #132238;
+			--muted: #5b6b80;
+			--primary: #0b5d8c;
+			--primary-dark: #094e76;
+			--border: #dce5f0;
+		}
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+			background:
+				radial-gradient(circle at top left, #e7f0fa 0, transparent 35%),
+				radial-gradient(circle at 90% 10%, #e1f4ec 0, transparent 30%),
+				var(--bg);
+			color: var(--text);
+		}
+		nav {
+			background: #0f2338;
+			padding: 14px 22px;
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			border-bottom: 1px solid #18314b;
+		}
+		nav a {
+			color: #d8e5f3;
+			text-decoration: none;
+			font-weight: 600;
+			padding: 9px 13px;
+			border-radius: 999px;
+			transition: background-color 0.2s ease, color 0.2s ease;
+		}
+		nav a:hover,
+		nav a.active {
+			background: #1f3d5b;
+			color: #ffffff;
+		}
+		main {
+			max-width: 1040px;
+			margin: 52px auto;
+			padding: 0 20px;
+		}
+		.hero {
+			display: grid;
+			grid-template-columns: 1.3fr 1fr;
+			gap: 24px;
+			align-items: stretch;
+		}
+		.hero-content,
+		.hero-panel {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 28px;
+			box-shadow: 0 16px 36px rgba(7, 31, 61, 0.08);
+		}
+		h1 {
+			margin-top: 0;
+			font-size: 2rem;
+			line-height: 1.2;
+		}
+		p {
+			color: var(--muted);
+			line-height: 1.7;
+		}
+		.badge {
+			display: inline-block;
+			padding: 6px 10px;
+			background: #e7f0fa;
+			color: var(--primary);
+			font-size: 0.85rem;
+			border-radius: 999px;
+			margin-bottom: 12px;
+			font-weight: 700;
+		}
+		.feature-list {
+			list-style: none;
+			padding: 0;
+			margin: 16px 0 0;
+		}
+		.feature-list li {
+			padding: 10px 0;
+			border-bottom: 1px solid var(--border);
+			color: #2f3f54;
+		}
+		.feature-list li:last-child {
+			border-bottom: none;
+		}
+		@media (max-width: 800px) {
+			.hero {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="about.html" class="active">About</a>
+		<a href="contact.html">Contact</a>
+		<a href="login.html">Login</a>
+		<a href="signup.html">Signup</a>
+	</nav>
+
+	<main>
+		<section class="hero">
+			<div class="hero-content">
+				<span class="badge">Company Profile</span>
+				<h1>Professional digital experience for everyday users</h1>
+				<p>Vertex Portal is a clean and focused interface built for clarity, trust, and speed. Every page is structured to help users complete actions quickly, whether they are signing in, creating an account, or contacting your team.</p>
+			</div>
+			<div class="hero-panel">
+				<h2>What you get</h2>
+				<ul class="feature-list">
+					<li>Unified navigation across all pages</li>
+					<li>Consistent form design and spacing</li>
+					<li>Responsive layout for desktop and mobile</li>
+					<li>Simple structure ready for backend integration</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

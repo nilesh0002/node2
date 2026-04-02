@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Signup | Vertex Portal</title>
+	<style>
+		:root {
+			--bg: #f3f6fb;
+			--surface: #ffffff;
+			--text: #132238;
+			--muted: #5b6b80;
+			--primary: #0b5d8c;
+			--primary-dark: #094e76;
+			--border: #dce5f0;
+		}
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+			background:
+				radial-gradient(circle at top left, #e7f0fa 0, transparent 35%),
+				radial-gradient(circle at 90% 10%, #e1f4ec 0, transparent 30%),
+				var(--bg);
+			color: var(--text);
+		}
+		nav {
+			background: #0f2338;
+			padding: 14px 22px;
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			border-bottom: 1px solid #18314b;
+		}
+		nav a {
+			color: #d8e5f3;
+			text-decoration: none;
+			font-weight: 600;
+			padding: 9px 13px;
+			border-radius: 999px;
+			transition: background-color 0.2s ease, color 0.2s ease;
+		}
+		nav a:hover,
+		nav a.active {
+			background: #1f3d5b;
+			color: #ffffff;
+		}
+		main {
+			max-width: 1040px;
+			margin: 52px auto;
+			padding: 0 20px;
+		}
+		.form-card {
+			max-width: 520px;
+			background: var(--surface);
+			padding: 28px;
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			box-shadow: 0 16px 36px rgba(7, 31, 61, 0.08);
+		}
+		h1 {
+			margin-top: 0;
+			margin-bottom: 10px;
+			font-size: 1.9rem;
+		}
+		.subtitle {
+			margin-top: 0;
+			margin-bottom: 20px;
+			color: var(--muted);
+		}
+		.form-group {
+			margin-bottom: 16px;
+		}
+		label {
+			display: block;
+			margin-bottom: 6px;
+			font-weight: 600;
+			color: #28415e;
+		}
+		input {
+			width: 100%;
+			padding: 11px 12px;
+			border: 1px solid #c9d8e7;
+			border-radius: 10px;
+			font-size: 15px;
+			outline: none;
+			transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		}
+		input:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px rgba(11, 93, 140, 0.12);
+		}
+		button {
+			width: 100%;
+			padding: 10px 14px;
+			border: none;
+			border-radius: 10px;
+			background: var(--primary);
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.2s ease, transform 0.2s ease;
+		}
+		button:hover {
+			background: var(--primary-dark);
+			transform: translateY(-1px);
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="about.html">About</a>
+		<a href="contact.html">Contact</a>
+		<a href="login.html">Login</a>
+		<a href="signup.html" class="active">Signup</a>
+	</nav>
+
+	<main>
+		<h1>Signup Page</h1>
+		<p class="subtitle">Create your account to get started with the portal.</p>
+		<div class="form-card">
+			<form action="/signup" method="post">
+				<div class="form-group">
+					<label for="signupName">Full Name</label>
+					<input type="text" id="signupName" name="name" placeholder="Enter your full name" required />
+				</div>
+				<div class="form-group">
+					<label for="signupEmail">Email</label>
+					<input type="email" id="signupEmail" name="email" placeholder="Enter your email" required />
+				</div>
+				<div class="form-group">
+					<label for="signupPassword">Password</label>
+					<input type="password" id="signupPassword" name="password" placeholder="Create a password" required />
+				</div>
+				<button type="submit">Create Account</button>
+			</form>
+		</div>
+	</main>
+</body>
+</html>
