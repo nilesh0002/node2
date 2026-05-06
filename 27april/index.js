@@ -11,3 +11,13 @@ const mongooseSchema = new mongoose.Schema({
     age: Number,
     email: String
 });
+const task = mongoose.model('task', mongooseSchema);
+
+app.get('/tasks', async (req, res) => {
+    try {
+        const tasks = await task.find();
+        res.json(tasks);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
